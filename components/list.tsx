@@ -26,7 +26,7 @@ export default function List() {
           className={`item relative inset-0 flex w-full select-none flex-col items-center justify-center gap-2 overflow-hidden bg-green-500`}
         >
           <button
-            className={`relative h-2/3 w-full transition ease-out hover:scale-125`}
+            className={`relative h-2/3 w-full transition ease-out hover:scale-125 hover:duration-1000`}
             onClick={() => {
               openSideNav();
               setPokeUrl(i.url);

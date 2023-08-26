@@ -8,9 +8,5 @@ html {
 }
 
 .MuiPaginationItem-root {
-  color: white;
-}
-
-.MuiButtonBase-root {
-  /* background-color: red !important; */
+  color: white !important;
 }
