@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import MyContext from "@/app/context";
 import { useContext, useEffect, useState } from "react";
@@ -96,7 +96,6 @@ export default function SideNav() {
 
   const sideNavState = sideNav ? "translate-x-0" : "translate-x-full";
 
-  console.log(list?.order);
   return (
     <>
       <div

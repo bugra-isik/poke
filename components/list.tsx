@@ -31,21 +31,16 @@ export default function List() {
               openSideNav();
               setPokeUrl(i.url);
             }}
-            // onMouseEnter={(e) => {
-            //   e.currentTarget.classList.remove("duration-100");
-            //   e.currentTarget.classList.add("duration-1000");
-            // }}
-            // onMouseLeave={(e) => {
-            //   e.currentTarget.classList.remove("duration-1000");
-            //   e.currentTarget.classList.add("duration-100");
-            // }}
           >
             {/* <div>
               <ImSpinner2 className={`h-20 w-20 animate-spin text-red-950`} />
             </div> */}
             <Image src={src} fill alt="pokemon" />
           </button>
-          {data.id}. Pokémon
+          <p className={`text-black`}>
+            {data.id}.{" "}
+            {`${data.name.charAt(0).toUpperCase()}${data.name.slice(1)} `}
+          </p>
         </li>
       );
     });

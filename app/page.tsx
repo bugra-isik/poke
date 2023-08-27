@@ -31,7 +31,7 @@ export default function Home() {
   const handle = (x: any, y: any) => setPag((y - 1) * 20);
   const tailwind = ["hidden translate-x-full", "flex translate-x-0"];
   return (
-    <main className={`flex h-screen flex-col justify-between font-sans`}>
+    <main className={`flex h-screen flex-col justify-between font-sans bg-layer1 text-white`}>
       <MyContext.Provider value={{ pokemon, pokeUrl, setPokeUrl, pokeData }}>
         <section className={`mt-5 flex grow justify-between`}>
           <ul
