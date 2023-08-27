@@ -11,7 +11,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        layer1: "#000",
+        theme1: "#0d1b2a",
+        theme2: "#1b263b",
+        theme3: "#415a77",
+        theme4: "#778da9",
+        theme5: "#e0e1dd",
       },
     },
   },

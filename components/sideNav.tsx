@@ -1,7 +1,7 @@
 "use client";
 
 import MyContext from "@/app/context";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import api from "@/api/posts";
 import Image from "next/image";
 import {
@@ -12,7 +12,11 @@ import {
   GiBoltShield,
   GiMetalBoot,
 } from "react-icons/gi";
+
 import { myStore } from "@/app/store";
+import { motion } from "framer-motion";
+import { BsChevronCompactDown } from "react-icons/bs";
+import { after } from "node:test";
 
 export default function SideNav() {
   ////////////////////////////////////////////////////////////////
@@ -20,6 +24,8 @@ export default function SideNav() {
   const { pokeUrl } = useContext<any>(MyContext);
   const [list, setList] = useState<any>();
   const [abilities, setAbilities] = useState<any>();
+  const [chevronAnimation, setChevronAnimation] = useState(true);
+  const [chevronHidden, setChevronHidden] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -58,21 +64,23 @@ export default function SideNav() {
   }, [list]);
 
   const icon = [
-    <GiHearts key={GiHearts} />,
-    <GiPiercingSword key={GiPiercingSword} />,
-    <GiShield key={GiShield} />,
-    <GiPointySword key={GiPointySword} />,
-    <GiBoltShield key={GiBoltShield} />,
-    <GiMetalBoot key={GiMetalBoot} />,
+    <GiHearts className={`text-red-500`} key={GiHearts} />,
+    <GiPiercingSword className={`text-amber-500`} key={GiPiercingSword} />,
+    <GiShield className={`text-blue-500`} key={GiShield} />,
+    <GiPointySword className={`text-orange-500`} key={GiPointySword} />,
+    <GiBoltShield className={`text-indigo-500`} key={GiBoltShield} />,
+    <GiMetalBoot className={`text-zinc-400`} key={GiMetalBoot} />,
   ];
 
   const abilites = abilities?.map((item: any, index: any) => (
     <div className={`flex flex-col gap-2`} key={index}>
-      <li className={`text-2xl font-black`}>{item.name.toUpperCase()}</li>
+      <li className={`text-2xl font-bold text-theme1`}>
+        {item.name.toUpperCase()}
+      </li>
       {item.effect_entries.map((item: any, index: any) => {
         if (item.language.name === "en") {
           return (
-            <div className={``} key={index}>
+            <div className={`text-theme2`} key={index}>
               {item.effect}
             </div>
           );
@@ -81,45 +89,79 @@ export default function SideNav() {
     </div>
   ));
 
+  const statNames = ["Hp", "Atk", "Def", "Ult. Atk", "Ult. Def", "Speed"];
+
   const stats = list?.stats.map((item: any, index: any) => (
     <li
       key={index}
-      className={`bg-layer1 flex items-center justify-between rounded-lg px-1 text-2xl`}
+      className={`flex h-20 items-center justify-between rounded-lg bg-theme1 px-1 text-2xl`}
     >
       <div className={`flex items-center gap-1`}>
         <i>{icon[index]}</i>
-        <div>{item.stat.name.toUpperCase()}</div>
+        <div>{statNames[index]}</div>
       </div>
       <div>{item.base_stat}</div>
     </li>
   ));
 
-  const sideNavState = sideNav ? "translate-x-0" : "translate-x-full";
+  const chevron = useMemo(
+    () =>
+      setInterval(() => {
+        setChevronAnimation((e) => !e);
+      }, 500),
+    [],
+  );
+
+  const sideNavState = sideNav
+    ? "translate-x-0 bg-black/50"
+    : "translate-x-full bg-black/0";
 
   return (
     <>
       <div
-        className={`${sideNavState} bg-layer1/50 fixed inset-0 z-50`}
+        className={`${sideNavState} fixed inset-0 z-50 transition-colors duration-300`}
         onClick={() => closeSideNav()}
       />
-      <nav
-        key={list?.order}
-        className={` fixed inset-y-0 right-0 z-50 flex w-1/3 select-none flex-col items-center justify-between bg-red-500 px-5 pb-5  transition duration-300 ${sideNavState}`}
+      <motion.nav
+        id="bg"
+        className={`${
+          sideNav ? "translate-x-0" : "translate-x-full"
+        } fixed inset-y-0 right-0 z-50 flex w-1/3 select-none flex-col
+         items-center justify-between border-l border-theme1 bg-theme2 px-5 pb-5 drop-shadow-2xl transition duration-1000`}
       >
-        <h1 className={`bg-layer1 p-3 text-5xl font-black `}>
+        <h1 className={`p-3 text-5xl font-black `}>
           {list?.name.toUpperCase()}
         </h1>
-        <div className={`relative h-80 w-80`}>
-          <Image className={``} src={src} fill alt="pokemon" />
-        </div>
+        {src && (
+          <div className={`relative h-80 w-80`}>
+            <Image className={``} src={src} fill alt="pokemon" />
+          </div>
+        )}
         <ul
-          className={`bg-layer1 flex max-h-60 w-full flex-col gap-y-10 overflow-y-scroll hyphens-auto rounded-lg p-2 text-justify`}
+          onScroll={() => setChevronHidden(true)}
+          className={`relative flex max-h-60 w-full cursor-move flex-col gap-y-10
+           overflow-y-scroll hyphens-auto rounded-lg bg-theme4 p-2 text-justify scrollbar-hide`}
         >
-          <h1 className={`text-center text-3xl font-black`}>ABILITIES</h1>
+          <i onLoad={() => chevron} hidden={chevronHidden}>
+            <BsChevronCompactDown
+              className={`${
+                chevronAnimation ? "translate-y-5" : "translate-y-0"
+              } absolute bottom-10 right-3 h-10 w-10 text-theme1 transition ease-in`}
+            />
+          </i>
+          <h1
+            className={`rounded-t bg-theme3 py-2 text-center text-3xl font-black text-theme1`}
+          >
+            ABILITIES
+          </h1>
           {abilites}
         </ul>
-        <ul className={`grid  w-full grid-cols-3 gap-x-5 gap-y-2 `}>{stats}</ul>
-      </nav>
+        <ul
+          className={`grid  w-full cursor-crosshair grid-cols-3 gap-x-5 gap-y-2 `}
+        >
+          {stats}
+        </ul>
+      </motion.nav>
     </>
   );
 }
