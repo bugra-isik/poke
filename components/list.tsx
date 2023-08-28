@@ -1,14 +1,12 @@
 import api from "@/api/posts";
-import MyContext from "@/app/context";
 import { myStore } from "@/app/store";
 import Image from "next/image";
-import { useContext, useEffect, useRef, useState } from "react";
-import { ImSpinner2 } from "react-icons/im";
+import { useEffect, useState } from "react";
 
 export default function List() {
-  const { pokemon, setPokeUrl, pokeData } = useContext<any>(MyContext);
+  const { openSideNav, closeSideNav, pokemon, setPokeUrl, pokeData } =
+    myStore();
   const [list, setList] = useState();
-  const { sideNav, openSideNav, closeSideNav } = myStore();
 
   useEffect(() => {
     const nameList: any = pokemon?.map(async (i: any, index: any) => {

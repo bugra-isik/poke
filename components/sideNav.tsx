@@ -1,27 +1,21 @@
-"use client";
-
-import MyContext from "@/app/context";
-import { useContext, useEffect, useMemo, useState } from "react";
 import api from "@/api/posts";
 import Image from "next/image";
+import { useEffect, useMemo, useState } from "react";
 import {
+  GiBoltShield,
   GiHearts,
+  GiMetalBoot,
   GiPiercingSword,
   GiPointySword,
   GiShield,
-  GiBoltShield,
-  GiMetalBoot,
 } from "react-icons/gi";
 
 import { myStore } from "@/app/store";
 import { motion } from "framer-motion";
 import { BsChevronCompactDown } from "react-icons/bs";
-import { after } from "node:test";
 
 export default function SideNav() {
-  ////////////////////////////////////////////////////////////////
-  const { sideNav, openSideNav, closeSideNav } = myStore();
-  const { pokeUrl } = useContext<any>(MyContext);
+  const { sideNav,closeSideNav, pokeUrl } = myStore();
   const [list, setList] = useState<any>();
   const [abilities, setAbilities] = useState<any>();
   const [chevronAnimation, setChevronAnimation] = useState(true);
@@ -91,7 +85,7 @@ export default function SideNav() {
 
   const statNames = ["Hp", "Atk", "Def", "Ult. Atk", "Ult. Def", "Speed"];
 
-  const stats = list?.stats.map((item: any, index: any) => (
+  const stats = list?.stats?.map((item: any, index: any) => (
     <li
       key={index}
       className={`flex h-20 items-center justify-between rounded-lg bg-theme1 px-1 text-2xl`}
@@ -139,9 +133,15 @@ export default function SideNav() {
         )}
         <ul
           onScroll={() => setChevronHidden(true)}
-          className={`relative flex max-h-60 w-full cursor-move flex-col gap-y-10
+          className={`relative flex max-h-60 w-full cursor-n-resize flex-col gap-y-10
            overflow-y-scroll hyphens-auto rounded-lg bg-theme4 p-2 text-justify scrollbar-hide`}
         >
+          <h1
+            className={`rounded-t bg-theme3 py-2 text-center text-3xl font-black text-theme1`}
+          >
+            ABILITIES
+          </h1>
+          {abilites}
           <i onLoad={() => chevron} hidden={chevronHidden}>
             <BsChevronCompactDown
               className={`${
@@ -149,12 +149,6 @@ export default function SideNav() {
               } absolute bottom-10 right-3 h-10 w-10 text-theme1 transition ease-in`}
             />
           </i>
-          <h1
-            className={`rounded-t bg-theme3 py-2 text-center text-3xl font-black text-theme1`}
-          >
-            ABILITIES
-          </h1>
-          {abilites}
         </ul>
         <ul
           className={`grid  w-full cursor-crosshair grid-cols-3 gap-x-5 gap-y-2 `}
