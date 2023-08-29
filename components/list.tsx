@@ -25,7 +25,7 @@ export default function List() {
             openSideNav();
             setPokeUrl(i.url);
           }}
-          className={`item relative  inset-0 flex h-20 w-full cursor-pointer select-none flex-col items-center justify-center gap-2 overflow-hidden rounded-lg bg-theme2 shadow-2xl backdrop-blur-3xl transition ease-out hover:scale-110 hover:duration-1000 lg:h-auto`}
+          className={`item relative  inset-0 flex h-20 w-full cursor-pointer select-none flex-col items-center justify-center gap-2 overflow-hidden rounded-lg bg-theme2 shadow-2xl backdrop-blur-3xl transition ease-out lg:hover:scale-110 hover:duration-1000 lg:h-auto`}
         >
           <button className={`relative h-2/3 w-full`}>
             <div className={`relative m-auto h-full w-1/3`}>

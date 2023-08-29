@@ -121,14 +121,14 @@ export default function SideNav() {
         id="bg"
         className={`${
           sideNav ? "translate-x-0" : "translate-x-full"
-        } fixed inset-y-0 right-0 z-50 flex w-1/3 select-none flex-col
-         items-center justify-between border-l border-theme1 bg-theme2 px-5 pb-5 drop-shadow-2xl transition duration-1000`}
+        } fixed inset-y-0 right-0 z-50 flex w-4/5 select-none flex-col items-center
+         justify-between border-l border-theme1 bg-theme2 px-5 pb-5 drop-shadow-2xl transition duration-1000 lg:w-1/3`}
       >
-        <h1 className={`p-3 text-5xl font-black `}>
+        <h1 className={`p-3 text-3xl font-black lg:text-5xl `}>
           {list?.name.toUpperCase()}
         </h1>
         {src && (
-          <div className={`relative h-80 w-80`}>
+          <div className={`relative h-48 w-48 lg:h-80 lg:w-80`}>
             <Image className={``} src={src} fill alt="pokemon" />
           </div>
         )}
@@ -138,7 +138,7 @@ export default function SideNav() {
            rounded-lg bg-theme4 p-2 text-justify scrollbar-hide lg:my-5 2xl:my-0`}
         >
           <h1
-            className={`rounded-t bg-theme3 py-2 text-center text-3xl font-black text-theme1`}
+            className={`rounded-t bg-theme3 -mx-5 py-2 text-center text-3xl font-black text-theme1`}
           >
             ABILITIES
           </h1>
@@ -151,7 +151,9 @@ export default function SideNav() {
             />
           </i>
         </ul>
-        <ul className={`grid  w-full cursor-crosshair grid-cols-3 gap-5`}>
+        <ul
+          className={`grid w-full cursor-crosshair grid-cols-2 gap-5 lg:grid-cols-3`}
+        >
           {stats}
         </ul>
       </motion.nav>
