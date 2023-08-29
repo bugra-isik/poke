@@ -12,11 +12,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        theme1: "#0d1b2a",
-        theme2: "#1b263b",
-        theme3: "#415a77",
-        theme4: "#778da9",
-        theme5: "#e0e1dd",
+        theme1: "#11052c",
+        theme2: "#3d087b",
+        theme3: "#f43b86",
+        theme4: "#ffe459",
+        theme5: "#fff",
+      },
+      fontFamily: {
+        arcade: "'Digital Numbers', sans-serif;",
       },
     },
   },

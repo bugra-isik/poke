@@ -10,7 +10,7 @@ import MyContext from "./context";
 import { myStore } from "./store";
 
 export default function Home() {
-  const {pokemon, setPokemon, pokeData, setPokeData } = myStore();
+  const { pokemon, setPokemon, pokeData, setPokeData } = myStore();
   const [delay, setDelay] = useState(false);
 
   useEffect(() => {
@@ -34,14 +34,14 @@ export default function Home() {
   return (
     <main
       id="main"
-      className={`flex h-screen flex-col justify-between font-sans text-theme5`}
+      className={`flex min-h-screen h-full w-full flex-col justify-between font-sans text-theme5`}
     >
       <MyContext.Provider value={{}}>
         {delay ? (
           <>
             <section className={`mt-5 flex grow justify-between`}>
               <ul
-                className={`mx-5 grid grow grid-cols-5 justify-items-center gap-5`}
+                className={`mx-5 grid grow grid-cols-2 justify-items-center gap-5 lg:grid-cols-5`}
               >
                 <List />
               </ul>
@@ -60,7 +60,7 @@ export default function Home() {
                 item: "bg-theme3 text-theme5 hover:text-theme1 hover:bg-theme3 deneme",
                 prev: "bg-theme3 text-theme5",
                 next: "bg-theme3",
-                cursor: "bg-theme4 text-theme5 cursor-not-allowed",
+                cursor: "bg-theme4 text-theme1 cursor-not-allowed",
                 ellipsis: "text-theme5",
                 chevronNext: "text-theme5",
               }}

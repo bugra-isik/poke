@@ -18,7 +18,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="shortcut icon" href="favicon-196x196.png" type="image/x-icon" />
+        <link
+          rel="shortcut icon"
+          href="favicon-196x196.png"
+          type="image/x-icon"
+        />
+        <link
+          href="https://fonts.cdnfonts.com/css/digital-numbers"
+          rel="stylesheet"
+        />
       </head>
       <body className={inter.className}>
         <Providers>{children}</Providers>

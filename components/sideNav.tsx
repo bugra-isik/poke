@@ -13,9 +13,10 @@ import {
 import { myStore } from "@/app/store";
 import { motion } from "framer-motion";
 import { BsChevronCompactDown } from "react-icons/bs";
+import { AiFillThunderbolt } from "react-icons/ai";
 
 export default function SideNav() {
-  const { sideNav,closeSideNav, pokeUrl } = myStore();
+  const { sideNav, closeSideNav, pokeUrl } = myStore();
   const [list, setList] = useState<any>();
   const [abilities, setAbilities] = useState<any>();
   const [chevronAnimation, setChevronAnimation] = useState(true);
@@ -63,7 +64,7 @@ export default function SideNav() {
     <GiShield className={`text-blue-500`} key={GiShield} />,
     <GiPointySword className={`text-orange-500`} key={GiPointySword} />,
     <GiBoltShield className={`text-indigo-500`} key={GiBoltShield} />,
-    <GiMetalBoot className={`text-zinc-400`} key={GiMetalBoot} />,
+    <AiFillThunderbolt className={`text-theme4`} key={AiFillThunderbolt} />,
   ];
 
   const abilites = abilities?.map((item: any, index: any) => (
@@ -83,18 +84,18 @@ export default function SideNav() {
     </div>
   ));
 
-  const statNames = ["Hp", "Atk", "Def", "Ult. Atk", "Ult. Def", "Speed"];
+  const statNames = ["HP", "ATK", "DEF", "Ult. Atk", "Ult. Def", "Speed"];
 
   const stats = list?.stats?.map((item: any, index: any) => (
     <li
       key={index}
-      className={`flex h-20 items-center justify-between rounded-lg bg-theme1 px-1 text-2xl`}
+      className={`flex h-10 items-center justify-between rounded-lg bg-theme1 px-1 text-2xl transition duration-300 hover:scale-[1.18]`}
     >
       <div className={`flex items-center gap-1`}>
         <i>{icon[index]}</i>
-        <div>{statNames[index]}</div>
+        {/* <div className={`text-base`}>{statNames[index]}</div> */}
       </div>
-      <div>{item.base_stat}</div>
+      <div className={`font-arcade`}>{item.base_stat}</div>
     </li>
   ));
 
@@ -133,8 +134,8 @@ export default function SideNav() {
         )}
         <ul
           onScroll={() => setChevronHidden(true)}
-          className={`relative flex max-h-60 w-full cursor-n-resize flex-col gap-y-10
-           overflow-y-scroll hyphens-auto rounded-lg bg-theme4 p-2 text-justify scrollbar-hide`}
+          className={`relative flex max-h-60 w-full cursor-n-resize flex-col gap-y-10 overflow-y-scroll hyphens-auto
+           rounded-lg bg-theme4 p-2 text-justify scrollbar-hide lg:my-5 2xl:my-0`}
         >
           <h1
             className={`rounded-t bg-theme3 py-2 text-center text-3xl font-black text-theme1`}
@@ -150,9 +151,7 @@ export default function SideNav() {
             />
           </i>
         </ul>
-        <ul
-          className={`grid  w-full cursor-crosshair grid-cols-3 gap-x-5 gap-y-2 `}
-        >
+        <ul className={`grid  w-full cursor-crosshair grid-cols-3 gap-5`}>
           {stats}
         </ul>
       </motion.nav>
