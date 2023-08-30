@@ -1,5 +1,11 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+![image](https://github.com/bugra-isik/poke/assets/120986459/7415a76f-d3a0-4f9d-ad95-b101f807551c)
+
+
+This project is a project where the list of Pokémon is divided into pages, and it displays the information of the selected Pokémon.
+
+
 ## Getting Started
 
 First, run the development server:
