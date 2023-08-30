@@ -110,7 +110,6 @@ export default function SideNav() {
   const sideNavState = sideNav
     ? "translate-x-0 bg-black/50"
     : "translate-x-full bg-black/0";
-
   return (
     <>
       <div
@@ -118,24 +117,25 @@ export default function SideNav() {
         onClick={() => closeSideNav()}
       />
       <motion.nav
+        animate={{
+          transform: `translateX(${sideNav ? "0%" : "100%"})`,
+        }}
         id="bg"
-        className={`${
-          sideNav ? "translate-x-0" : "translate-x-full"
-        } fixed inset-y-0 right-0 z-50 flex w-4/5 select-none flex-col gap-3
-         items-center justify-between border-l border-theme1 bg-theme2 px-5 pb-5 drop-shadow-2xl transition duration-1000 lg:w-1/3`}
+        className={` fixed inset-y-0 right-0 z-50 flex w-4/5 select-none flex-col items-center
+         justify-between gap-3 border-l border-theme1 bg-theme2 px-5 pb-5 drop-shadow-2xl lg:w-1/3`}
       >
         <h1 className={`p-3 text-3xl font-black lg:text-5xl `}>
           {list?.name.toUpperCase()}
         </h1>
         {src && (
-          <div className={`relative h-48 w-48 lg:h-80 lg:w-80`}>
+          <div className={`relative h-48 w-48 sm:h-60 sm:w-60 lg:h-80 lg:w-80`}>
             <Image className={``} src={src} fill alt="pokemon" />
           </div>
         )}
         <ul
           onScroll={() => setChevronHidden(true)}
-          className={`relative flex max-h-60 w-full cursor-n-resize flex-col gap-y-10 overflow-y-scroll hyphens-auto
-           rounded-lg bg-theme4 p-2 text-justify scrollbar-hide lg:my-5 2xl:my-0`}
+          className={`relative flex max-h-100 w-full cursor-n-resize flex-col gap-y-10 overflow-y-scroll hyphens-auto
+           rounded-lg bg-theme4 px-2 text-justify scrollbar-hide py-0`}
         >
           <h1
             className={`-mx-5 rounded-t bg-theme3 py-2 text-center text-3xl font-black text-theme1`}
@@ -152,7 +152,7 @@ export default function SideNav() {
           </i>
         </ul>
         <ul
-          className={`grid w-full cursor-crosshair grid-cols-2 gap-5 lg:grid-cols-3`}
+          className={`grid w-full cursor-crosshair grid-cols-2 gap-5 sm:grid-cols-3`}
         >
           {stats}
         </ul>
