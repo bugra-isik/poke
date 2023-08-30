@@ -1,4 +1,21 @@
+# Pokémon
+
+This project is a project where the list of Pokémon is divided into pages, and it displays the information of the selected Pokémon.
+
+![image](https://github.com/bugra-isik/poke/assets/120986459/7415a76f-d3a0-4f9d-ad95-b101f807551c)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## Usage
+
+Clone the repository: `git clone https://github.com/bugra-isik/poke`
+
+## Technologies Used
+
+- Next.js
+- Tailwind CSS
+- TypeScript
+- Zustand
 
 ## Getting Started
 
@@ -12,7 +29,7 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:8080](http://localhost:8080) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
@@ -32,3 +49,12 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Contributing
+
+Contributions are welcome! Feel free to submit pull requests to improve existing projects or add new ones.
+
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
