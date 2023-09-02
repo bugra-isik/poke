@@ -11,7 +11,7 @@ import { myStore } from "./store";
 export default function Home() {
   const { pokemon, setPokemon, pokeData, setPokeData } = myStore();
   const [delay, setDelay] = useState(false);
-
+  console.log(pokeData)
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -61,6 +61,7 @@ export default function Home() {
             >
               <List />
             </ul>
+            <div ></div>
             <SideNav />
           </section>
           <Pagination
