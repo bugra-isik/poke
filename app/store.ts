@@ -1,18 +1,23 @@
 import { create } from "zustand";
 
-interface MyObject {
+export type PokemonItem = {
+  name: string;
+  url: string;
+};
+
+type MyObject = {
   sideNav: boolean;
   openSideNav: () => void;
   closeSideNav: () => void;
   pag: number;
   setPag: (x: number) => void;
-  pokemon: string[];
-  setPokemon: (x: string[]) => void;
+  pokemonList: PokemonItem[];
+  setPokemonList: (x: PokemonItem[]) => void;
   pokeUrl: string;
   setPokeUrl: (x: string) => void;
-  pokeData: string;
-  setPokeData: (x: number) => void;
-}
+  pokeListURL: string;
+  setPokeListURL: (x: number) => void;
+};
 
 export const myStore = create<MyObject>((set) => ({
   sideNav: false,
@@ -20,13 +25,13 @@ export const myStore = create<MyObject>((set) => ({
   closeSideNav: () => set({ sideNav: false }),
   pag: 0,
   setPag: (x) => set({ pag: x }),
-  pokemon: [],
-  setPokemon: (x) => set({ pokemon: x }),
+  pokemonList: [],
+  setPokemonList: (x) => set({ pokemonList: x }),
   pokeUrl: "https://pokeapi.co/api/v2/pokemon/1/",
   setPokeUrl: (x) => set({ pokeUrl: x }),
-  pokeData: `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20`,
-  setPokeData: (x) =>
+  pokeListURL: `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20`,
+  setPokeListURL: (x) =>
     set({
-      pokeData: `https://pokeapi.co/api/v2/pokemon/?offset=${x}&limit=20`,
+      pokeListURL: `https://pokeapi.co/api/v2/pokemon/?offset=${x}&limit=20`,
     }),
 }));

@@ -9,7 +9,7 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
-  theme: {    
+  theme: {
     extend: {
       colors: {
         theme1: "#11052c",
@@ -20,6 +20,7 @@ const config: Config = {
       },
       fontFamily: {
         arcade: "'Digital Numbers', sans-serif",
+        dmSans: "'DM Sans', sans-serif",
       },
       backgroundImage: {
         deneme1:

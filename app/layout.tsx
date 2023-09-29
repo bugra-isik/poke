@@ -1,9 +1,12 @@
 import "./globals.sass";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter,DM_Sans } from "next/font/google";
 import { Providers } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
+const dmSans=DM_Sans({
+  subsets:["latin"],  
+})
 
 export const metadata: Metadata = {
   title: "Pokémon",
@@ -28,7 +31,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={inter.className}>
+      <body>
         <Providers>{children}</Providers>
       </body>
     </html>
