@@ -1,12 +1,13 @@
 import "./globals.sass";
 import type { Metadata } from "next";
-import { Inter,DM_Sans } from "next/font/google";
+import { Inter, DM_Sans } from "next/font/google";
 import { Providers } from "./providers";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
-const dmSans=DM_Sans({
-  subsets:["latin"],  
-})
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Pokémon",
@@ -32,7 +33,10 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <Analytics />
+        </Providers>
       </body>
     </html>
   );
