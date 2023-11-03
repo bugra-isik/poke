@@ -1,6 +1,6 @@
 import api from "@/api/posts";
 import Image from "next/image";
-import { useCallback, useEffect, useState, useRef } from "react";
+import { useCallback, useEffect, useState, useRef, ReactElement } from "react";
 import {
   GiBoltShield,
   GiHearts,
@@ -58,8 +58,8 @@ export default function SideNav() {
 
   const src =
     list?.sprites?.other?.dream_world?.front_default ||
-    list?.sprites?.other?.["official-artwork"]?.front_default ||
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png";
+    list?.sprites?.other?.["official-artwork"]?.front_default;
+  // "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png";
 
   const abilites = abilities?.map((item: any, index: any) => (
     <div className={`flex flex-col gap-2`} key={index}>
@@ -77,6 +77,12 @@ export default function SideNav() {
       })}
     </div>
   ));
+
+  const [image, setImage] = useState<ReactElement>();
+
+  useEffect(() => {
+    src && setImage(<Image className={``} src={src} fill alt="pokemon" />);
+  }, [src]);
 
   const statNames = ["Hp", "Atk", "Def", "Ult. Atk", "Ult. Def", "Speed"];
   const statFontSizeTw = "2xl:text-lg xl:text-base lg:text-xs text-base";
@@ -103,7 +109,10 @@ export default function SideNav() {
     <>
       <div
         className={`${sideNavState} fixed inset-0 z-50 transition-colors duration-300`}
-        onClick={() => closeSideNav()}
+        onClick={() => {
+          closeSideNav();
+          setImage(<div />);
+        }}
       />
       <nav
         id="bg"
@@ -118,11 +127,15 @@ export default function SideNav() {
           {list?.name.toUpperCase()}
         </h1>
 
-        {src && (
-          <div className={`relative w-48 basis-1/3 sm:w-60 md:w-96 lg:w-80`}>
-            <Image className={``} src={src} fill alt="pokemon" />
-          </div>
-        )}
+        <div className={`relative w-48 basis-1/3 sm:w-60 md:w-96 lg:w-80`}>
+          {image?.type == "div" ? (
+            <ImSpinner8
+              className={`absolute h-full w-full animate-spin text-theme1/50`}
+            />
+          ) : (
+            image
+          )}
+        </div>
 
         <ul
           onScroll={() => setChevronHidden(true)}
